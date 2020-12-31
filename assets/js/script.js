@@ -121,6 +121,7 @@ function answerHandler(event) {
     displayQuestionAnswer(questionIndex);
   }
 }
+//storing the result in the storage
 function saveUserScore() {
   var userInput = document.querySelector("input[name='userName']").value;
   var userScoreInfo = { userName: userInput, score: score };
@@ -141,4 +142,11 @@ function fetchUserScore(userScoreInfo) {
 
   document.getElementById("scoreDisplay").innerHTML =
     "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
+}
+//display final score of the user
+function displayScore() {
+  timerFlag = true;
+  userInfo.setAttribute("style", "display:block");
+  divContainer.append(userInfo);
+  document.querySelector(".score-span").innerHTML = score;
 }
