@@ -168,3 +168,15 @@ function restartTheQuiz() {
 function clearHighScore() {
   document.getElementById("scoreDisplay").innerHTML = "";
 }
+
+//show high score
+function highScore() {
+  divContainer.innerHTML = "";
+  fetchUserScore();
+}
+
+startButton.addEventListener("click", startTheQuiz);
+btnRestart.addEventListener("click", restartTheQuiz);
+formSubmit.addEventListener("submit", saveUserScore);
+btnHightScore.addEventListener("click", highScore);
+btnClear.addEventListener("click", clearHighScore);
