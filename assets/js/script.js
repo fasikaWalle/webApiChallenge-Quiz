@@ -1,30 +1,61 @@
-var body = document.body;
-body.style.backgroundColor = "#f4f4f4";
-var divContainer = document.createElement("div");
-divContainer.setAttribute(
-  "style",
-  "width:60%;height:50%;border:2px solid #555;position:absolute;top:20%;left:20%;borderRadius:5px;padding:40px;background-color:#fff"
-);
-body.append(divContainer);
-headerDiv = document.createElement("div");
-headerDiv.setAttribute("style", "width:80%;margin:40px auto;");
-headingElement = document.createElement("h1");
-headingElement.textContent = "Coding Quiz Challenge";
-headingElement.setAttribute(
-  "style",
-  "font-size:50px;font-weight:bolder;text-align:center"
-);
-headingElement2 = document.createElement("h2");
-headingElement2.textContent =
-  "Try to answer the following code-related questions within the time limit.Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
-headingElement2.setAttribute("style", "text-align:center;font-size:30px");
-buttonStart = document.createElement("button");
-buttonStart.textContent = "Start Quiz";
-buttonStart.setAttribute(
-  "style",
-  "background-color:#8e44ad;color:#fff;border-radius:10px;padding:20px 40px;position:absolute;left:40%;margin-top:20px;font-size:30px"
-);
-headerDiv.append(headingElement);
-headerDiv.append(headingElement2);
-headerDiv.append(buttonStart);
-divContainer.append(headerDiv);
+//array of question lists
+var questionArray = [
+  {
+    question:
+      "Which of the following function of Array object joins all elements of an array into a string:____________",
+    choice: ["concat()", "join()", "pop()", "push()"],
+    answer: "join()",
+  },
+  {
+    question: "How do you call a function named 'myFunction':____________",
+    choice: [
+      "call myFunction()",
+      "function myfunction()",
+      "myFunction()",
+      "myfunction()",
+    ],
+    answer: "myFunction()",
+  },
+  {
+    question:
+      "How do you round the number 7.25, to the nearest integer:____________",
+    choice: ["round(7.5)", "math.round(7.5)", "rnd(7.5)", "Math.round(7.5)"],
+    answer: "Math.round(7.5)",
+  },
+  {
+    question:
+      "Which event occurs when the user clicks on an HTML element:____________",
+    choice: ["onchange", "onclick", "onmouseover", "onmouseclick"],
+    answer: "onclick",
+  },
+];
+
+var divContainer = document.querySelector(".wrapper");
+var startButton = document.querySelector(".button-start");
+var timeContainer = document.querySelector(".timer-container");
+var userInfo = document.querySelector("#userInfo");
+var formSubmit = document.querySelector("#form-submit");
+var scoreDiv = document.getElementById("score-container");
+var btnRestart = document.querySelector(".btn-back");
+var btnClear = document.querySelector(".btn-clear");
+var btnHightScore = document.querySelector(".btn-score");
+var timerSpan = document.getElementById("time");
+var checkeAnswer = document.querySelector(".answer-checked");
+
+var questionIndex = 0;
+var startTime = 60;
+var score = 0;
+var timerFlag = false;
+//setting the time starting  from 60 to 0 interval
+function displayTimer() {
+  var timer = setInterval(function () {
+    if (!timerFlag) {
+      if (startTime >= 0) {
+        timerSpan.innerHTML = startTime;
+        startTime--;
+      } else {
+        clearInterval(timer);
+      }
+    }
+  }, 1000);
+}
