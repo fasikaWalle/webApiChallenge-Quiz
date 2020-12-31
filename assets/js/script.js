@@ -99,3 +99,25 @@ function displayQuestionAnswer(index) {
     listClickHandler.addEventListener("click", answerHandler);
   }
 }
+
+//a function which checks if the user answer and the answer of the question matches
+function answerHandler(event) {
+  var userAnswer = event.target.innerHTML;
+  var correctAnswer = questionArray[questionIndex].answer;
+  if (correctAnswer === userAnswer) {
+    divContainer.innerHTML = "";
+    questionIndex++;
+    score++;
+    checkeAnswer.setAttribute("style", "display:block");
+    checkeAnswer.innerHTML = "correct!";
+    divContainer.append(checkeAnswer);
+    displayQuestionAnswer(questionIndex);
+  } else {
+    questionIndex++;
+    startTime = startTime - 10;
+    checkeAnswer.setAttribute("style", "display:block");
+    checkeAnswer.innerHTML = "wrong!";
+    divContainer.append(checkeAnswer);
+    displayQuestionAnswer(questionIndex);
+  }
+}
