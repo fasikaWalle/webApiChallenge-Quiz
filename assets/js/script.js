@@ -164,3 +164,7 @@ function fetchUserScore(userScoreInfo) {
 function restartTheQuiz() {
   window.location.assign("/");
 }
+//clear high score by making the paragraph content empty
+function clearHighScore() {
+  document.getElementById("scoreDisplay").innerHTML = "";
+}
