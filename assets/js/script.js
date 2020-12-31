@@ -150,3 +150,13 @@ function displayScore() {
   divContainer.append(userInfo);
   document.querySelector(".score-span").innerHTML = score;
 }
+//retrive the stored data from local storage
+function fetchUserScore(userScoreInfo) {
+  clearDiv();
+  divContainer.removeChild(timeContainer);
+  scoreDiv.setAttribute("style", "display:block");
+  divContainer.append(scoreDiv);
+
+  document.getElementById("scoreDisplay").innerHTML =
+    "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
+}
