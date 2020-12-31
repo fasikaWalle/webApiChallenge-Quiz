@@ -59,3 +59,43 @@ function displayTimer() {
     }
   }, 1000);
 }
+//a function which used to start the game when we click the start button
+function startTheQuiz() {
+  displayQuestionAnswer(questionIndex);
+  displayTimer();
+}
+
+function clearDiv() {
+  divContainer.textContent = "";
+  divContainer.append(timeContainer);
+}
+
+//a function which display all the questions and choices from the array
+function displayQuestionAnswer(index) {
+  clearDiv();
+  if (questionArray.length === index) {
+    displayScore();
+    return;
+  }
+  var wrapperList = document.createElement("div");
+  divContainer.append(wrapperList);
+  wrapperList.className = "wrapper-list";
+  var questions = document.createElement("p");
+  questions.className = "question-text";
+  questions.textContent = questionArray[index].question;
+  wrapperList.append(questions);
+
+  var questionList = document.createElement("ul");
+  questionList.className = "listItems";
+  var choices = questionArray[index].choice;
+  for (var i = 0; i < choices.length; i++) {
+    var li = document.createElement("li");
+    li.textContent = choices[i];
+    li.className = "list";
+    questionList.append(li);
+    wrapperList.append(questionList);
+    //handles the event when we click on the choices
+    var listClickHandler = document.querySelector(".listItems");
+    listClickHandler.addEventListener("click", answerHandler);
+  }
+}
