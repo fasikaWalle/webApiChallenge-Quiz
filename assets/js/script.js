@@ -121,3 +121,24 @@ function answerHandler(event) {
     displayQuestionAnswer(questionIndex);
   }
 }
+function saveUserScore() {
+  var userInput = document.querySelector("input[name='userName']").value;
+  var userScoreInfo = { userName: userInput, score: score };
+  localStorage.setItem(userInput, JSON.stringify(userScoreInfo));
+  // const highScores = JSON.parse(localStorage.getItem(userInput) || []);
+  // highScores.push(userScoreInfo);
+  console.log(highScores);
+  var retriveUserInfo = JSON.parse(localStorage.getItem(userInput));
+
+  fetchUserScore(retriveUserInfo);
+}
+//retrive the stored data from local storage
+function fetchUserScore(userScoreInfo) {
+  clearDiv();
+  divContainer.removeChild(timeContainer);
+  scoreDiv.setAttribute("style", "display:block");
+  divContainer.append(scoreDiv);
+
+  document.getElementById("scoreDisplay").innerHTML =
+    "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
+}
