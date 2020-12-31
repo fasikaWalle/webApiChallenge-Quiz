@@ -160,3 +160,7 @@ function fetchUserScore(userScoreInfo) {
   document.getElementById("scoreDisplay").innerHTML =
     "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
 }
+//restart the quiz
+function restartTheQuiz() {
+  window.location.assign("/");
+}
