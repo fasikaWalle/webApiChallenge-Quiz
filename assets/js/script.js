@@ -1,35 +1,3 @@
-//array of question lists
-var questionArray = [
-  {
-    question:
-      "Which of the following function of Array object joins all elements of an array into a string:____________",
-    choice: ["concat()", "join()", "pop()", "push()"],
-    answer: "join()",
-  },
-  {
-    question: "How do you call a function named 'myFunction':____________",
-    choice: [
-      "call myFunction()",
-      "function myfunction()",
-      "myFunction()",
-      "myfunction()",
-    ],
-    answer: "myFunction()",
-  },
-  {
-    question:
-      "How do you round the number 7.25, to the nearest integer:____________",
-    choice: ["round(7.5)", "math.round(7.5)", "rnd(7.5)", "Math.round(7.5)"],
-    answer: "Math.round(7.5)",
-  },
-  {
-    question:
-      "Which event occurs when the user clicks on an HTML element:____________",
-    choice: ["onchange", "onclick", "onmouseover", "onmouseclick"],
-    answer: "onclick",
-  },
-];
-
 var divContainer = document.querySelector(".wrapper");
 var startButton = document.querySelector(".button-start");
 var timeContainer = document.querySelector(".timer-container");
@@ -38,7 +6,7 @@ var formSubmit = document.querySelector("#form-submit");
 var scoreDiv = document.getElementById("score-container");
 var btnRestart = document.querySelector(".btn-back");
 var btnClear = document.querySelector(".btn-clear");
-var btnHightScore = document.querySelector(".btn-score");
+var btnHighScore = document.querySelector(".btn-score");
 var timerSpan = document.getElementById("time");
 var checkeAnswer = document.querySelector(".answer-checked");
 
@@ -54,6 +22,8 @@ function displayTimer() {
         timerSpan.innerHTML = startTime;
         startTime--;
       } else {
+        clearDiv();
+        displayScore();
         clearInterval(timer);
       }
     }
@@ -85,7 +55,7 @@ function displayQuestionAnswer(index) {
   questions.textContent = questionArray[index].question;
   wrapperList.append(questions);
 
-  var questionList = document.createElement("ul");
+  var questionList = document.createElement("ol");
   questionList.className = "listItems";
   var choices = questionArray[index].choice;
   for (var i = 0; i < choices.length; i++) {
@@ -102,46 +72,66 @@ function displayQuestionAnswer(index) {
 
 //a function which checks if the user answer and the answer of the question matches
 function answerHandler(event) {
-  var userAnswer = event.target.innerHTML;
-  var correctAnswer = questionArray[questionIndex].answer;
-  if (correctAnswer === userAnswer) {
-    divContainer.innerHTML = "";
-    questionIndex++;
-    score++;
-    checkeAnswer.setAttribute("style", "display:block");
-    checkeAnswer.innerHTML = "correct!";
-    divContainer.append(checkeAnswer);
-    displayQuestionAnswer(questionIndex);
-  } else {
-    questionIndex++;
-    startTime = startTime - 10;
-    checkeAnswer.setAttribute("style", "display:block");
-    checkeAnswer.innerHTML = "wrong!";
-    divContainer.append(checkeAnswer);
-    displayQuestionAnswer(questionIndex);
-  }
+  setTimeout(function () {
+    var userAnswer = event.target.innerHTML;
+    var correctAnswer = questionArray[questionIndex].answer;
+    if (correctAnswer === userAnswer) {
+      checkeAnswer.setAttribute("style", "display:block");
+      checkeAnswer.innerHTML = "correct!";
+      document.body.append(checkeAnswer);
+
+      divContainer.textContent = "";
+      questionIndex++;
+      score += 5;
+      displayQuestionAnswer(questionIndex);
+    } else {
+      checkeAnswer.setAttribute("style", "display:block");
+      checkeAnswer.innerHTML = "wrong!";
+      document.body.append(checkeAnswer);
+      questionIndex++;
+      startTime = startTime - 10;
+      displayQuestionAnswer(questionIndex);
+    }
+  }, 500);
 }
 //storing the result in the storage
-function saveUserScore() {
-  var userInput = document.querySelector("input[name='userName']").value;
-  var userScoreInfo = { userName: userInput, score: score };
-  localStorage.setItem(userInput, JSON.stringify(userScoreInfo));
-  // const highScores = JSON.parse(localStorage.getItem(userInput) || []);
-  // highScores.push(userScoreInfo);
-  console.log(highScores);
-  var retriveUserInfo = JSON.parse(localStorage.getItem(userInput));
-
-  fetchUserScore(retriveUserInfo);
+function saveUserInfo() {
+  var userName = document.querySelector("input[name='userName']").value;
+  var userScoreInfo = { userName: userName, score: score };
+  var userScore = localStorage.getItem("score") || [];
+  if (userScore.length > 0) {
+    userScore = JSON.parse(userScore);
+  }
+  userScore.push(userScoreInfo);
+  userScore = JSON.stringify(userScore);
+  localStorage.setItem("score", userScore);
 }
+//save user score to local storage
+function saveUserScore() {
+  saveUserInfo();
+  fetchHighScore();
+}
+
 //retrive the stored data from local storage
-function fetchUserScore(userScoreInfo) {
+function fetchHighScore() {
+  var highScore = localStorage.getItem("score");
+  highScore = JSON.parse(highScore);
   clearDiv();
   divContainer.removeChild(timeContainer);
   scoreDiv.setAttribute("style", "display:block");
   divContainer.append(scoreDiv);
+  var max = 0;
+  var highScoreUser;
 
+  for (var i = 0; i < highScore.length; i++) {
+    var score = highScore[i].score;
+    if (max < score) {
+      max = score;
+      highScoreUser = highScore[i];
+    }
+  }
   document.getElementById("scoreDisplay").innerHTML =
-    "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
+    "1. " + highScoreUser.userName + " - " + highScoreUser.score;
 }
 //display final score of the user
 function displayScore() {
@@ -149,16 +139,6 @@ function displayScore() {
   userInfo.setAttribute("style", "display:block");
   divContainer.append(userInfo);
   document.querySelector(".score-span").innerHTML = score;
-}
-//retrive the stored data from local storage
-function fetchUserScore(userScoreInfo) {
-  clearDiv();
-  divContainer.removeChild(timeContainer);
-  scoreDiv.setAttribute("style", "display:block");
-  divContainer.append(scoreDiv);
-
-  document.getElementById("scoreDisplay").innerHTML =
-    "1. " + userScoreInfo.userName + " - " + userScoreInfo.score;
 }
 //restart the quiz
 function restartTheQuiz() {
@@ -169,14 +149,8 @@ function clearHighScore() {
   document.getElementById("scoreDisplay").innerHTML = "";
 }
 
-//show high score
-function highScore() {
-  divContainer.innerHTML = "";
-  fetchUserScore();
-}
-
 startButton.addEventListener("click", startTheQuiz);
 btnRestart.addEventListener("click", restartTheQuiz);
 formSubmit.addEventListener("submit", saveUserScore);
-btnHightScore.addEventListener("click", highScore);
+btnHighScore.addEventListener("click", fetchHighScore);
 btnClear.addEventListener("click", clearHighScore);

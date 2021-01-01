@@ -3,27 +3,31 @@
   padding: 0;
   box-sizing: border-box;
 }
-body,
-html {
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,100;1,300&display=swap");
+body {
   background-color: #f4f4f4;
   font-size: 20px;
+  font-family: "Lato", sans-serif;
 }
 h1 {
   text-align: center;
   font-size: 240%;
   margin-top: 60px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #e2d3e9;
 }
-
+/* div container which holds the whole elements  */
 .wrapper {
-  width: 80%;
-  height: 80%;
   position: absolute;
-  top: 10%;
-  left: 15%;
+  top: 5%;
+  left: 10%;
   padding: 40px;
+  width: 80%;
+  height: 90%;
+  box-shadow: 4px 2px 4px 4px #a39393;
   background-color: #fff;
 }
-
+/* button start */
 .btn-score {
   padding: 0;
   background-color: #fff;
@@ -65,12 +69,25 @@ h1 {
   background-color: #8f44ad;
 }
 .main-part p {
-  font-size: 180%;
-  width: 80%;
+  font-size: 170%;
+  word-spacing: 2px;
+  width: 70%;
   text-align: center;
   margin: 20px auto;
 }
-/*------------------*/
+.answer-checked {
+  display: none;
+  border-top: 1px solid #979797;
+  width: 50%;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 110%;
+  color: #9f9f9f;
+  position: absolute;
+  top: 85%;
+  left: 20%;
+}
+/*----------user info form--------*/
 
 #userInfo {
   font-size: 30px;
@@ -107,51 +124,45 @@ form label {
 }
 /*------------------*/
 
-.answer-checked {
-  display: none;
-  border-top: 1px solid #979797;
-  width: 70%;
-  position: absolute;
-  top: 80%;
-  left: 10%;
-  text-align: center;
-  padding-top: 20px;
-}
 .wrapper-list {
-  width: 90%;
   margin-top: 10%;
   margin-left: 20%;
 }
 
 .list {
-  padding: 15px 90px;
+  padding: 7% 2%;
   background-color: #522764;
   color: #fff;
-  width: 40%;
+  width: 100%;
   border-radius: 10px;
-  margin: 20px;
-  font-size: 90%;
+  margin: 10px;
+  font-size: 70%;
   transition: background-color 0.2s;
 }
-.list:active {
+
+.list:active,
+.list:hover {
   background-color: #8f44ad;
 }
 .listItems {
+  width: 30%;
+  text-align: center;
   font-size: 180%;
+  margin-top: 1em;
 }
 .question-text {
-  font-size: 30px;
+  font-size: 150%;
   width: 100%;
   font-weight: bold;
   margin: 0 auto;
 }
-/* --------------------- */
+/* --------score container  ------------- */
 #score-container {
   display: none;
   position: absolute;
   left: 20%;
   top: 20%;
-  width: 100%;
+  width: 80%;
 }
 #score-container h2 {
   font-size: 180%;
@@ -169,6 +180,5 @@ form label {
   font-size: 20px;
   padding: 10px 20px;
   border-radius: 5px;
-
   background-color: #522764;
 }

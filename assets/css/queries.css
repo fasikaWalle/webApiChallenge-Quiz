@@ -1,0 +1,85 @@
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+}
+/* Small tablet to big tablet: from 768px to 1023px */
+@media screen and (max-width: 1023px) {
+  body {
+    font-size: 16px;
+  }
+  .main-part p {
+    font-size: 130%;
+  }
+  .listItems {
+    width: 40%;
+  }
+  .list {
+    padding: 5% 10%;
+    width: 100%;
+  }
+  .question-text {
+    font-size: 120%;
+  }
+  #score-container p {
+    padding: 15px;
+    width: 65%;
+  }
+  .main-part button {
+    padding: 20px 30px;
+    font-size: 20px;
+  }
+  #userInfo p {
+    font-size: 16px;
+  }
+  #userInfo form {
+    display: flex;
+    flex-direction: column;
+  }
+  #userInfo .submit-btn {
+    margin-top: 10px;
+  }
+}
+
+/* Small phones to small tablets: from 481px to 767px */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .main-part button {
+    padding: 20px 20px;
+    font-size: 16px;
+    margin-top: 30%;
+  }
+
+  .main-part p {
+    width: 100%;
+  }
+  .listItems {
+    width: 95%;
+  }
+  .list {
+    margin: 10px auto 0 auto;
+  }
+  .question-text {
+    margin-top: 20%;
+  }
+  #score-container {
+    left: 10%;
+  }
+  #score-container button {
+    padding: 7px 10px;
+  }
+  #score-container p {
+    width: 90%;
+  }
+  .btn-score {
+    font-size: 16px;
+  }
+  #userInfo {
+    left: 7%;
+  }
+  .answer-checked {
+    border-top: none;
+  }
+}
