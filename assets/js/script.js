@@ -119,7 +119,7 @@ function saveUserScore(event) {
 //user validation which checks if user name already exist
 function userValidation(userScore, userNameInput) {
   for (var i = 0; i < userScore.length; i++) {
-    if (userScore[i].userName === userNameInput) {
+    if (userScore[i].userName.toLowerCase() === userNameInput.toLowerCase()) {
       return true;
     }
   }
@@ -145,7 +145,7 @@ function fetchHighScore() {
     }
   }
   document.getElementById("scoreDisplay").innerHTML =
-    "1. " + highScoreUser.userName + " - " + highScoreUser.score;
+    "1. " + highScoreUser.userNameInput + " - " + highScoreUser.score;
 }
 //display final score of the user
 function displayScore() {
