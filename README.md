@@ -17,7 +17,14 @@ This project provides
 * Start timer
 * saving and retriving data to localstorage
 * Mobile responsive
-* User name validation
+* User name validation 
+
+## URL of the project
+
+* Github Repo:https:
+
+* Live site URL: https://fasikawalle.github.io/webApiChallenge-Quiz/.
+
 ## Screenshots
 ![quiz](https://user-images.githubusercontent.com/73629983/103449416-b8c50d00-4c6d-11eb-82fd-3f157313b456.png)
 ![highscore](https://user-images.githubusercontent.com/73629983/103449414-b8c50d00-4c6d-11eb-9360-77bb4c80db4c.png)
