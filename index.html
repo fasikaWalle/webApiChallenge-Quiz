@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/queries.css">
+</head>
+<body>
+    <main id="mainSection">
+    <div class="wrapper">
+        <div class="timer-container">
+            <button class="btn-score">view High Scores</button>
+            <p>Time: <span id="time"> 0</span></p>
+        </div>
+        <div class="main-part">
+        <h1>Coding Quiz Challenge</h1>
+        <p class="guide-text">Try to answer the following code-related questions within the time limit.Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+    <button type="button" class="button-start">Start Quiz</button>
+    <p class="answer-checked"></p>
+</div>
+<div id="userInfo">
+    <h4>All Done!</h4>
+    <p>your final score is: <span class="score-span">0</span></p>
+    <form id="form-submit">
+    <label>Enter initial</label>
+    <input type="text" id="userName" name="userName" placeholder="your name" required>
+    <input type="submit"  value="submit" class="submit-btn">
+    <div id="checkUserName"> the user name is already taken please use a diffrent user name</div>
+</form>
+</div>
+<div id="score-container">
+    <h2>high scores</h2>
+    <p id="scoreDisplay"></p>
+    <button class="btn-back">Go back </button>
+    <button class="btn-clear">Clear high score </button>
+ 
+</div>
+</div>
+    </main>
+    <script src="assets/js/questions.js"></script> 
+   <script src="assets/js/script.js"></script> 
+
+</body>
+</html>
