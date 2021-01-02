@@ -69,7 +69,7 @@ h1 {
   background-color: #8f44ad;
 }
 .main-part p {
-  font-size: 170%;
+  font-size: 160%;
   word-spacing: 2px;
   width: 70%;
   text-align: center;
@@ -84,7 +84,7 @@ h1 {
   font-size: 110%;
   color: #9f9f9f;
   position: absolute;
-  top: 85%;
+  top: 86%;
   left: 20%;
 }
 /*----------user info form--------*/

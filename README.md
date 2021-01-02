@@ -16,4 +16,6 @@ This project provides
 
 - Start timer
 - saving and retriving data to localstorage
+
 * Mobile responsive
+* User name validation
