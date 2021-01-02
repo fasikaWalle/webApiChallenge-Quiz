@@ -19,6 +19,6 @@ This project provides
 * Mobile responsive
 * User name validation
 ## Screenshots
-![highscore](https://user-images.githubusercontent.com/73629983/103449414-b8c50d00-4c6d-11eb-9360-77bb4c80db4c.png)
 ![quiz](https://user-images.githubusercontent.com/73629983/103449416-b8c50d00-4c6d-11eb-82fd-3f157313b456.png)
+![highscore](https://user-images.githubusercontent.com/73629983/103449414-b8c50d00-4c6d-11eb-9360-77bb4c80db4c.png)
 ![quizvalidation](https://user-images.githubusercontent.com/73629983/103449417-b8c50d00-4c6d-11eb-8fd5-d6b06a070d8c.png)
