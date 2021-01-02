@@ -156,7 +156,7 @@ function displayScore() {
 }
 //restart the quiz
 function restartTheQuiz() {
-  location.reload();
+  window.location.href = "https://fasikawalle.github.io/webApiChallenge1/";
 }
 //clear high score by making the paragraph content empty
 function clearHighScore() {
