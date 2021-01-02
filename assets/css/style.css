@@ -122,6 +122,15 @@ form label {
   border-radius: 10px;
   font-size: 20px;
 }
+#checkUserName {
+  display: none;
+  color: #f0162f;
+  font-size: 0.70588rem;
+  line-height: 2rem;
+  padding: 0.3rem;
+  margin-right: 3.75rem;
+  text-align: center;
+}
 /*------------------*/
 
 .wrapper-list {

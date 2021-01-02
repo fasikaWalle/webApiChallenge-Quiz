@@ -9,11 +9,12 @@ var btnClear = document.querySelector(".btn-clear");
 var btnHighScore = document.querySelector(".btn-score");
 var timerSpan = document.getElementById("time");
 var checkeAnswer = document.querySelector(".answer-checked");
-
+var userValid = document.getElementById("checkUserName");
 var questionIndex = 0;
 var startTime = 60;
 var score = 0;
 var timerFlag = false;
+
 //setting the time starting  from 60 to 0 interval
 function displayTimer() {
   var timer = setInterval(function () {
@@ -75,6 +76,7 @@ function answerHandler(event) {
   setTimeout(function () {
     var userAnswer = event.target.innerHTML;
     var correctAnswer = questionArray[questionIndex].answer;
+    console.log(correctAnswer);
     if (correctAnswer === userAnswer) {
       checkeAnswer.setAttribute("style", "display:block");
       checkeAnswer.innerHTML = "correct!";
@@ -95,28 +97,41 @@ function answerHandler(event) {
   }, 500);
 }
 //storing the result in the storage
-function saveUserInfo() {
-  var userName = document.querySelector("input[name='userName']").value;
-  var userScoreInfo = { userName: userName, score: score };
+function saveUserScore(event) {
+  var userNameInput = document.querySelector("input[name='userName']").value;
+  var userScoreInfo = { userName: userNameInput, score: score };
   var userScore = localStorage.getItem("score") || [];
   if (userScore.length > 0) {
     userScore = JSON.parse(userScore);
   }
-  userScore.push(userScoreInfo);
-  userScore = JSON.stringify(userScore);
-  localStorage.setItem("score", userScore);
+  var userNameExist = userValidation(userScore, userNameInput);
+  if (userNameExist) {
+    event.preventDefault();
+    userValid.setAttribute("style", "display:block");
+    userInfo.append(userValid);
+  } else {
+    userScore.push(userScoreInfo);
+    userScore = JSON.stringify(userScore);
+    localStorage.setItem("score", userScore);
+    fetchHighScore();
+  }
 }
-//save user score to local storage
-function saveUserScore() {
-  saveUserInfo();
-  fetchHighScore();
+//user validation which checks if user name already exist
+function userValidation(userScore, userNameInput) {
+  for (var i = 0; i < userScore.length; i++) {
+    if (userScore[i].userName === userNameInput) {
+      return true;
+    }
+  }
+  return false;
 }
-
 //retrive the stored data from local storage
 function fetchHighScore() {
+  clearDiv();
+  userValid.setAttribute("style", "display:none");
+  checkeAnswer.setAttribute("style", "display:none");
   var highScore = localStorage.getItem("score");
   highScore = JSON.parse(highScore);
-  clearDiv();
   divContainer.removeChild(timeContainer);
   scoreDiv.setAttribute("style", "display:block");
   divContainer.append(scoreDiv);
