@@ -12,6 +12,7 @@ var btnHighScore = document.querySelector(".btn-score");
 var timerSpan = document.getElementById("time");
 var checkeAnswer = document.querySelector(".answer-checked");
 var userValid = document.getElementById("checkUserName");
+
 var questionIndex = 0;
 var startTime = 60;
 var score = 0;
@@ -155,7 +156,7 @@ function displayScore() {
 }
 //restart the quiz
 function restartTheQuiz() {
-  window.location.assign("/");
+  location.reload();
 }
 //clear high score by making the paragraph content empty
 function clearHighScore() {
