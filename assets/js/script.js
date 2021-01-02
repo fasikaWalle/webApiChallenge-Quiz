@@ -1,3 +1,5 @@
+//quiz application
+
 var divContainer = document.querySelector(".wrapper");
 var startButton = document.querySelector(".button-start");
 var timeContainer = document.querySelector(".timer-container");
@@ -35,7 +37,7 @@ function startTheQuiz() {
   displayQuestionAnswer(questionIndex);
   displayTimer();
 }
-
+//a function which clears the window whenever the next question appear
 function clearDiv() {
   divContainer.textContent = "";
   divContainer.append(timeContainer);
@@ -70,18 +72,15 @@ function displayQuestionAnswer(index) {
     listClickHandler.addEventListener("click", answerHandler);
   }
 }
-
-//a function which checks if the user answer and the answer of the question matches
+//a function which checks if the user answer is correct or wrong
 function answerHandler(event) {
   setTimeout(function () {
     var userAnswer = event.target.innerHTML;
     var correctAnswer = questionArray[questionIndex].answer;
-    console.log(correctAnswer);
     if (correctAnswer === userAnswer) {
       checkeAnswer.setAttribute("style", "display:block");
       checkeAnswer.innerHTML = "correct!";
       document.body.append(checkeAnswer);
-
       divContainer.textContent = "";
       questionIndex++;
       score += 5;
@@ -137,7 +136,6 @@ function fetchHighScore() {
   divContainer.append(scoreDiv);
   var max = 0;
   var highScoreUser;
-
   for (var i = 0; i < highScore.length; i++) {
     var score = highScore[i].score;
     if (max < score) {
@@ -163,7 +161,6 @@ function restartTheQuiz() {
 function clearHighScore() {
   document.getElementById("scoreDisplay").innerHTML = "";
 }
-
 startButton.addEventListener("click", startTheQuiz);
 btnRestart.addEventListener("click", restartTheQuiz);
 formSubmit.addEventListener("submit", saveUserScore);
