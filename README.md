@@ -21,8 +21,7 @@ This project provides
 
 ## URL of the project
 
-* Github Repo:https:
-
+* Github Repo:https:https://github.com/fasikaWalle/webApiChallenge-Quiz
 * Live site URL: https://fasikawalle.github.io/webApiChallenge-Quiz/.
 
 ## Screenshots
