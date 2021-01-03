@@ -95,7 +95,7 @@ function answerHandler(event) {
       startTime = startTime - 10;
       displayQuestionAnswer(questionIndex);
     }
-  }, 500);
+  }, 1000);
 }
 //storing the result in the storage
 function saveUserScore(event) {
@@ -149,6 +149,7 @@ function fetchHighScore() {
   document.getElementById("scoreDisplay").innerHTML =
     "1. " + highScoreUser.userName + " - " + highScoreUser.score;
 }
+
 //display final score of the user
 function displayScore() {
   timerFlag = true;
