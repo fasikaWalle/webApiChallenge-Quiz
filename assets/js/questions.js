@@ -33,6 +33,6 @@ var questionArray = [
     question:
       "Which of the following is not considered a JavaScript operator____________",
     choice: ["new", "this", "delete", "typeof"],
-    answer: "this",
+    answer: "This",
   },
 ];

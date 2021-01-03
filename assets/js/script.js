@@ -77,6 +77,7 @@ function displayQuestionAnswer(index) {
 function answerHandler(event) {
   setTimeout(function () {
     var userAnswer = event.target.innerHTML;
+
     var correctAnswer = questionArray[questionIndex].answer;
     if (correctAnswer === userAnswer) {
       checkeAnswer.setAttribute("style", "display:block");
@@ -99,6 +100,7 @@ function answerHandler(event) {
 //storing the result in the storage
 function saveUserScore(event) {
   var userNameInput = document.querySelector("input[name='userName']").value;
+  userNameInput = userNameInput.toLowerCase();
   var userScoreInfo = { userName: userNameInput, score: score };
   var userScore = localStorage.getItem("score") || [];
   if (userScore.length > 0) {
@@ -119,7 +121,7 @@ function saveUserScore(event) {
 //user validation which checks if user name already exist
 function userValidation(userScore, userNameInput) {
   for (var i = 0; i < userScore.length; i++) {
-    if (userScore[i].userName.toLowerCase() === userNameInput.toLowerCase()) {
+    if (userScore[i].userName === userNameInput) {
       return true;
     }
   }
@@ -145,7 +147,7 @@ function fetchHighScore() {
     }
   }
   document.getElementById("scoreDisplay").innerHTML =
-    "1. " + highScoreUser.userNameInput + " - " + highScoreUser.score;
+    "1. " + highScoreUser.userName + " - " + highScoreUser.score;
 }
 //display final score of the user
 function displayScore() {
