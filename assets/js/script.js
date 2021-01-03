@@ -102,7 +102,7 @@ function saveUserScore(event) {
   var userNameInput = document.querySelector("input[name='userName']").value;
   userNameInput = userNameInput.toLowerCase();
   var userScoreInfo = { userName: userNameInput, score: score };
-  var userScore = localStorage.getItem("score") || [];
+  userScore = localStorage.getItem("score") || [];
   if (userScore.length > 0) {
     userScore = JSON.parse(userScore);
   }
@@ -137,7 +137,7 @@ function fetchHighScore() {
   divContainer.removeChild(timeContainer);
   scoreDiv.setAttribute("style", "display:block");
   divContainer.append(scoreDiv);
-  var max = 0;
+  var max = -1;
   var highScoreUser;
   for (var i = 0; i < highScore.length; i++) {
     var score = highScore[i].score;
@@ -159,11 +159,26 @@ function displayScore() {
 }
 //restart the quiz
 function restartTheQuiz() {
-  window.location.href = "https://fasikawalle.github.io/webApiChallenge-Quiz/";
+  // window.location.href = "https://fasikawalle.github.io/webApiChallenge-Quiz/";
 }
 //clear high score by making the paragraph content empty
 function clearHighScore() {
   document.getElementById("scoreDisplay").innerHTML = "";
+  var highScore = localStorage.getItem("score");
+  console.log(highScore);
+  highScore = JSON.parse(highScore);
+  var max = 0;
+  var indexOfHihScoreObj = 0;
+  for (var i = 0; i < highScore.length; i++) {
+    var score = highScore[i].score;
+    if (max < score) {
+      max = score;
+      indexOfHihScoreObj = i;
+    }
+  }
+  highScore.splice(indexOfHihScoreObj, 1);
+  console.log(highScore);
+  localStorage.setItem("score", JSON.stringify(highScore));
 }
 startButton.addEventListener("click", startTheQuiz);
 btnRestart.addEventListener("click", restartTheQuiz);
