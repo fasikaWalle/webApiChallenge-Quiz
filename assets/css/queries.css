@@ -22,8 +22,8 @@
     font-size: 120%;
   }
   #score-container p {
-    padding: 15px;
-    width: 65%;
+    padding: 4% 8%;
+    width: 70%;
   }
   .main-part button {
     padding: 20px 30px;
@@ -47,12 +47,12 @@
     font-size: 16px;
   }
   .main-part {
-    margin-top: 25%;
+    margin-top: 30%;
   }
   .main-part button {
     padding: 20px 20px;
     font-size: 16px;
-    margin-top: 30%;
+    margin-top: 15%;
   }
 
   .main-part p {
@@ -84,5 +84,8 @@
   }
   .answer-checked {
     border-top: none;
+  }
+  .wrapper-list {
+    margin: 30% auto;
   }
 }
