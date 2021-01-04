@@ -104,9 +104,6 @@ function saveUserScore(event) {
   var userScoreInfo = { userName: userNameInput, score: score };
   var userScore = getUserScore();
   console.log(userScore);
-  // if (userScore.length > 0) {
-  //   userScore = JSON.parse(userScore);
-  // }
   var userNameExist = userValidation(userScore, userNameInput);
   if (userNameExist) {
     event.preventDefault();
@@ -119,7 +116,7 @@ function saveUserScore(event) {
     fetchHighScore();
   }
 }
-
+//saving user score into localstorage
 function LocalStorageSetItem(userScore) {
   userScore = JSON.stringify(userScore);
   localStorage.setItem("score", userScore);
@@ -161,6 +158,7 @@ function fetchHighScore() {
     return;
   }
   var scoreDisplayBox = document.getElementById("scoreDisplay");
+  
   //check whether the array in the localstorage is empty or not
   if (userScore.length < 0) {
     return;
