@@ -150,7 +150,7 @@ function sortArray(highScore) {
 //retrive the stored data from local storage
 function fetchHighScore() {
   clearDiv();
-  var i = 0;
+  var userScoreIndex = 0;
   userValid.setAttribute("style", "display:none");
   checkeAnswer.setAttribute("style", "display:none");
   var userScore = getUserScore();
@@ -160,7 +160,6 @@ function fetchHighScore() {
   if (userScore.length < 0) {
     return;
   }
-  var i = 0;
   var scoreDisplayBox = document.getElementById("scoreDisplay");
   //check whether the array in the localstorage is empty or not
   if (userScore.length < 0) {
@@ -169,16 +168,18 @@ function fetchHighScore() {
   //to sort the user information based on their score
   sortArray(userScore);
   var UserscoresList = document.createElement("ol");
-  while (userScore.length > i) {
+  while (userScore.length > userScoreIndex) {
     var userScoreInfo =
-      userScore[i].userName + "---------------" + userScore[i].score;
+      userScore[userScoreIndex].userName +
+      "---------------" +
+      userScore[userScoreIndex].score;
     var scoreListItems = document.createElement("li");
     scoreListItems.setAttribute("style", "padding-bottom:20px");
     UserscoresList.append(scoreListItems);
     scoreListItems.innerHTML = userScoreInfo;
     scoreDisplayBox.append(UserscoresList);
-    i++;
-    if (i == 4) {
+    userScoreIndex++;
+    if (userScoreIndex == 4) {
       break;
     }
   }
@@ -193,7 +194,7 @@ function displayScore() {
 }
 //restart the quiz
 function restartTheQuiz() {
-   window.location.href = "https://fasikawalle.github.io/webApiChallenge-Quiz/";
+  window.location.href = "https://fasikawalle.github.io/webApiChallenge-Quiz/";
 }
 //clear high score by making the paragraph content empty
 function clearHighScore() {
